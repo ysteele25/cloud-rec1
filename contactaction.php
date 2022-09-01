@@ -1,48 +1,39 @@
 <?php
- $to = "rohit.prasad@plaxonic.com";
-// $subject = "This is subject";
 
-$message = "<b>This is HTML message.</b>";
-$message .= "<h1>This is headline.</h1>";
+require_once 'phpmailer1/src/Exception.php';
+require_once 'phpmailer1/src/PHPMailer.php';
+require_once 'phpmailer1/src/SMTP.php';
 
-// $header = "From:abc@somedomain.com \r\n";
-// $header .= "Cc:afgh@somedomain.com \r\n";
-// $header .= "MIME-Version: 1.0\r\n";
-// $header .= "Content-type: text/html\r\n";
+// passing true in constructor enables exceptions in PHPMailer
+$mail = new PHPMailer(true);
 
-// $retval = mail ($to,$subject,$message,$header);
+try {
+    // Server settings
+    $mail->SMTPDebug = SMTP::DEBUG_SERVER; // for detailed debug output
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = true;
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = 465;
 
-// if( $retval == true ) {
-// echo "Message sent successfully...";
-// }else {
-// echo "Message could not be sent...";
-// }
+    $mail->Username = 'testingtech57@gmail.com'; // YOUR gmail email
+    $mail->Password = 'Incorrect@123'; // YOUR gmail password
 
-require 'phpmailer/PHPMailerAutoload.php';
+    // Sender and recipient settings
+    $mail->setFrom('example@gmail.com', 'Sender Name');
+    $mail->addAddress('rohit.prasad@plaxonic.com');
+   
+    // Setting the email content
+    $mail->IsHTML(true);
+    $mail->Subject = "Send email using Gmail SMTP and PHPMailer";
+    $mail->Body = 'HTML message body. <b>Gmail</b> SMTP email body.';
+    $mail->AltBody = 'Plain text message body for non-HTML email client. Gmail SMTP email body.';
 
-$mail = new PHPMailer;
-			$mail->isSMTP();
-			$mail->Host = 'smtp.gmail.com';
-			$mail->Port = 465;
-			$mail->SMTPSecure = 'ssl';
-			$mail->SMTPAuth = true;
-			$mail->Username = "testingtech57@gmail.com";
-			$mail->Password = "Incorrect@123";
-			$mail->FromName = "Test";
-			$mail->addAddress($to);
-			$mail->Subject = "Test SMTP";
-			$mail->msgHTML($message);
-
-
-      if ($mail->send())
-{
-  echo 'mail sent';
+    $mail->send();
+    echo "Email message sent.";
+} catch (Exception $e) {
+    echo "Error in sending email. Mailer Error: {$mail->ErrorInfo}";
 }
-else{
-	echo $error = "Mailer Error: " . $mail->ErrorInfo;
-
-}
-
 
 
 
