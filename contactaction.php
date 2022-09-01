@@ -5,7 +5,7 @@ require 'vendor/autoload.php';
 use Mailgun\Mailgun;
 # Instantiate the client.
 $mgClient = new Mailgun('fa2fdec58b9ca13e5b88fa0310f45676-d2cc48bc-d78dddb6');
-$domain = "https://app.mailgun.com/app/sending/domains/sandboxe5f05968f9574df5af92dd85e610ddf6.mailgun.org";
+$domain = "sandboxe5f05968f9574df5af92dd85e610ddf6.mailgun.org";
 # Make the call to the client.
 $result = $mgClient->sendMessage($domain, array(
 	'from'	=> 'cloud-rec1.herokuapp.com',
