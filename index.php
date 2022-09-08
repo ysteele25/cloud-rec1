@@ -481,7 +481,7 @@
               <div class="lable-flk">
                 <img src="img/Frame (1).svg" />
                 <div style="color: white;">
-                  Email <br /> <span>Send Email</span>
+                  Email <br /> <span><a style="color:white; text-decoration:none;" href=mailto:yeda@cloudrc.tech>Send Email</a></span>
                 </div>
               </div>
               <div class="lable-flk">
